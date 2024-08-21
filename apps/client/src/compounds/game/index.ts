@@ -3,12 +3,24 @@ import { Dice, DiceState } from 'components/dice'
 import { UserState } from 'components/user'
 import { MAX_ROUND, PLAYER_COUNT } from 'validater'
 
+/*
+gamestatus:
+  - nextTurn의 nextRound 로 넘어가는 경우 finish 나, end에 대한 체크로 게임 종료 상황 확인
+
+board :
+  - 3번의 reroll 기회를 다 사용한 뒤, board에 점수 기입하는 과정
+
+dice : 
+  - click event 에 대해서 주사위 고정하는 것
+*/
+
 export enum GameStage {
   WAITING = 0,
   READY = 1,
   PLAYING = 2,
   FINISH = 3,
 }
+
 interface GameStatus {
   users: UserState[]
   boards: Record<UserState['info']['id'], Board>
@@ -71,6 +83,7 @@ export class Game {
   public getBoardByUser(userID: string): Board | null {
     return this.state.boards[userID]
   }
+
   public getCurrentUser(): string | null {
     if (this.state.stage !== GameStage.PLAYING) {
       return null
