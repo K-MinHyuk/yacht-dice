@@ -20,8 +20,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+<<<<<<< HEAD
     
     "typeRoots": ["node_modules/@types", "src", "src/types"],
+=======
+    "typeRoots": ["node_modules/@types"],
+>>>>>>> 64cf351dfc5394cf412eab961c200903e5dd1eab
   },
   "include": ["src/**/*", "./vite.config.ts", "./.eslintrc.cjs"],
   "exclude": ["node_modules", "dist", "build"],

@@ -1,3 +1,5 @@
+import { atom } from 'nanostores'
+
 export interface DiceState {
   id: string
   fixed: boolean
@@ -6,6 +8,7 @@ export interface DiceState {
 
 export const DICE_COINT = 5
 
+<<<<<<< HEAD
 /*
 주사위를 리셋하는 기능, 
 주사위를 굴리는기능, 
@@ -16,11 +19,17 @@ export const DICE_COINT = 5
 export class Dice {
   public reset(): void {
     this.dices = Array(DICE_COINT)
+=======
+function initial(): { dices: DiceState[]; step: number } {
+  return {
+    dices: Array(DICE_COINT)
+>>>>>>> 64cf351dfc5394cf412eab961c200903e5dd1eab
       .fill(undefined)
       .map(() => ({
         id: window.crypto.randomUUID(),
         fixed: false,
         value: 1,
+<<<<<<< HEAD
       }))
     this.step = 0
   }
@@ -57,4 +66,41 @@ export class Dice {
   }
   private dices: DiceState[] = []
   private step: number = 0
+=======
+      })),
+    step: 0,
+  }
+>>>>>>> 64cf351dfc5394cf412eab961c200903e5dd1eab
 }
+
+const state = atom<{ dices: DiceState[]; step: number }>(initial())
+
+export const $Dice = Object.assign(state, {
+  reset: () => {
+    state.set(initial())
+  },
+  roll: () => {
+    const prev = state.get()
+    if (prev.step > 3) {
+      return
+    }
+
+    state.set({
+      dices: prev.dices.map((dice) => ({
+        ...dice,
+        value: dice.fixed ? dice.value : Math.floor((Math.random() * 10) % 6) + 1,
+      })),
+      step: prev.step + 1,
+    })
+  },
+  toggle: (id: string) => {
+    const prev = state.get()
+    state.set({
+      dices: prev.dices.map((dice) => ({
+        ...dice,
+        fixed: dice.id === id ? !dice.fixed : dice.fixed,
+      })),
+      step: prev.step,
+    })
+  },
+})

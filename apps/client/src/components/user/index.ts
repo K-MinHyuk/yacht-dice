@@ -6,6 +6,12 @@
 //         1. 아이디, 닉네임 등
 //     - [ ]  요트 다이스 보드 기입 정보 및 점수 등
 
+import { atom } from 'nanostores'
+
+import { PLAYER_COUNT } from 'utils/validater'
+
+import { determiners, nouns } from './meta'
+
 export enum ConnectionStatus {
   CONNECTED = 0,
   CONNECTING = 1,
@@ -27,4 +33,44 @@ export interface UserState {
     id: string
     nickname: string
   }
+}
+
+const initial: UserState[] = []
+const state = atom<UserState[]>(initial)
+
+export const $Users = Object.assign(state, {
+  add: (): void => {
+    if (PLAYER_COUNT.max === state.get().length) {
+      return
+    }
+
+    state.set([
+      ...state.get(),
+      {
+        status: {
+          connection: ConnectionStatus.CONNECTED,
+          play: PlayStatus.READY,
+        },
+        info: {
+          id: window.crypto.randomUUID(),
+          nickname: randomNickname(),
+        },
+      },
+    ])
+  },
+  remove: (id: string): void => {
+    state.set(state.get().filter((user) => user.info.id !== id))
+  },
+  update: (id: string, nickname: string): void => {
+    state.set(state.get().map((prev) => (prev.info.id === id ? { ...prev, info: { ...prev.info, nickname } } : prev)))
+  },
+})
+
+function randomNickname(): string {
+  const random = Math.random()
+
+  const determiner = determiners.at((random * 10000) % determiners.length) ?? ''
+  const noun = nouns.at((random * 10000) % nouns.length) ?? ''
+
+  return `${determiner} ${noun}`
 }

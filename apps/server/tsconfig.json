@@ -21,7 +21,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "typeRoots": ["node_modules/@types", "src", "src/types"],
+    "typeRoots": ["node_modules/@types"],
   },
   "include": ["src/**/*", "./.eslintrc.cjs"],
   "exclude": ["node_modules", "dist", "build"],
