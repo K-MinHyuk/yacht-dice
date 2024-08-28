@@ -6,7 +6,7 @@ export interface DiceState {
   value: number
 }
 
-export const DICE_COINT = 5
+export const DICE_COINT = 6
 
 function initial(): { dices: DiceState[]; step: number } {
   return {

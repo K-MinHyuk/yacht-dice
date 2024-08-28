@@ -1,7 +1,7 @@
 import { Board } from 'components/board'
 import { Dice, DiceState } from 'components/dice'
 import { UserState } from 'components/user'
-import { MAX_ROUND, PLAYER_COUNT } from 'validater'
+import { MAX_ROUND, PLAYER_COUNT } from 'utils/validater'
 
 export enum GameStage {
   WAITING = 0,
