@@ -1,5 +1,6 @@
 import { map } from 'nanostores'
 
+import { DiceState } from 'components/dice'
 import { UserState } from 'components/user'
 
 export type RecordKeys =
@@ -80,11 +81,97 @@ export const $Boards = Object.assign(state, {
   getByKey: (
     id: UserState['info']['id'],
     key: RecordKeys,
+    check: boolean,
   ): ReturnType<typeof Board>['records'][RecordKeys] | undefined => {
     const board = state.get()[id]
     if (board === undefined) {
       return
     }
     return board.records[key]
+  },
+  getScore: (key: string, dices: DiceState[]): number | undefined => {
+    const diceCombi = dices
+    let sum = 0
+    switch (key) {
+      case 'one':
+        diceCombi.map((onedice: DiceState) => {
+          if (onedice.value === 1) {
+            sum += onedice.value
+          } else {
+            return
+          }
+        })
+        return sum
+        break
+      case 'two':
+        diceCombi.map((onedice: DiceState) => {
+          if (onedice.value === 2) {
+            sum += onedice.value
+          } else {
+            return
+          }
+        })
+        return sum
+        break
+      case 'three':
+        diceCombi.map((onedice: DiceState) => {
+          if (onedice.value === 3) {
+            sum += onedice.value
+          } else {
+            return
+          }
+        })
+        return sum
+        break
+      case 'four':
+        diceCombi.map((onedice: DiceState) => {
+          if (onedice.value === 4) {
+            sum += onedice.value
+          } else {
+            return
+          }
+        })
+        return sum
+        break
+      case 'five':
+        diceCombi.map((onedice: DiceState) => {
+          if (onedice.value === 5) {
+            sum += onedice.value
+          } else {
+            return
+          }
+        })
+        return sum
+        break
+      case 'six':
+        diceCombi.map((onedice: DiceState) => {
+          if (onedice.value === 6) {
+            sum += onedice.value
+          } else {
+            return
+          }
+        })
+        return sum
+        break
+      case 'Choice':
+        diceCombi.map((onedice: DiceState) => {
+          sum += onedice.value
+        })
+        return sum
+        break
+      //   case '4 of a Kind':
+      //     break;
+      //   case 'Full House':
+      //     break;
+      //   case 'S. Straight':
+      //     break;
+      //   case 'L. Straight':
+      //     break;
+      //   case 'Yacht':
+      //     break;
+      //   default:
+      //     return undefined
+      // }
+    }
   },
 })

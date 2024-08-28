@@ -23,7 +23,14 @@ function main() {
   const rollDiceButton = document.createElement('button')
   rollDiceButton.textContent = 'Roll Dice'
   rollDiceButton.addEventListener('click', () => {
+    const currentUserIndex = $Game.get().turn
     $Dice.roll()
+    for (const key of RecordKeyArray) {
+      const span = document.getElementById(key + currentUserIndex)
+      if (span) {
+        span.textContent = '' + $Boards.getScore(key, $Dice.get().dices)
+      }
+    }
   })
 
   const actionPanel = document.createElement('div')
@@ -54,6 +61,7 @@ function main() {
       return
     }
 
+    // todo
     $Boards.setRecord(current.turn, 'Yacht', {
       round: current.round,
       score: dice.dices.reduce((prev, curr) => prev + curr.value, 0),
@@ -141,6 +149,7 @@ function main() {
     dicePanel.replaceChildren(...diceElements, stepElem)
   })
 
+  // qqqqq
   $Users.subscribe((newUsers) => {
     if (newUsers.length === 0) {
       $Game.reset()
@@ -187,9 +196,9 @@ function main() {
             recordKey.textContent = key
             recordKey.style.width = '140px'
 
-            const value = board.records[key]
-
+            const value = board?.records[key]
             const recordValue = document.createElement('span')
+            recordValue.id = key + id
 
             recordValue.textContent = value ? `s: ${value.score}, r: ${value.round}` : ''
             recordValue.style.flex = '1 0 0'
