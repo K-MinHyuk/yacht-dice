@@ -1,3 +1,5 @@
+import { Application, Assets, Sprite, Spritesheet, AnimatedSprite } from 'pixi.js'
+
 import { $Boards, BonusRecordKey, BonusScore, RecordKeyArray, RecordKeys } from 'components/board'
 import { $Dice, MAX_DICE_STEP } from 'components/dice'
 import { $Game, GameStage } from 'components/game'
@@ -5,6 +7,43 @@ import { $TemporaryScore } from 'components/temporary-score'
 import { $Users } from 'components/user'
 import { isAchieveBonus, getScoreOf } from 'utils/caculator'
 import { MAX_ROUND, validate } from 'utils/validater'
+/*
+hi
+*/
+// Create a PixiJS application.
+const app = new Application()
+// Intialize the application.
+await app.init({ background: '#1099bb', resizeTo: window })
+document.getElementById('app')?.appendChild(app.canvas)
+
+const sheet = new Spritesheet(
+  await Assets.load('src/images/d6Red.png'),
+  (await Assets.load('src/images/d6Red.json')).data,
+)
+await sheet.parse()
+
+const rollAnimations = [
+  new AnimatedSprite(sheet.animations.roll01),
+  new AnimatedSprite(sheet.animations.roll02),
+  new AnimatedSprite(sheet.animations.roll03),
+  new AnimatedSprite(sheet.animations.roll04),
+  new AnimatedSprite(sheet.animations.roll05),
+]
+
+for (let i = 0; i < rollAnimations.length; i++) {
+  const roll = rollAnimations[i]
+
+  roll.animationSpeed = 0.1666 * 3
+  roll.loop = false
+  roll.x = 100 + i * 100
+  const s = roll.getSize()
+  roll.setSize(s.height * 0.1, s.width * 0.1)
+  roll.play()
+  app.stage.addChild(roll)
+}
+/*
+hi
+*/
 function main() {
   const root = document.querySelector('div#app')!
 
