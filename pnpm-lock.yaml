@@ -20,9 +20,18 @@ importers:
 
   apps/client:
     dependencies:
+      '@pixi/ui':
+        specifier: ^2.1.5
+        version: 2.1.5(pixi.js@8.3.4)
       nanostores:
         specifier: ^0.11.2
         version: 0.11.2
+<<<<<<< HEAD
+=======
+      pixi-table-layout:
+        specifier: ^1.0.1
+        version: 1.0.1(pixi.js@8.3.4)
+>>>>>>> af32d48f0c8c8ff69c07edc05ac1a4ee955713d6
       pixi.js:
         specifier: ^8.3.4
         version: 8.3.4
@@ -440,6 +449,14 @@ packages:
   '@pixi/colord@2.9.6':
     resolution: {integrity: sha512-nezytU2pw587fQstUu1AsJZDVEynjskwOL+kibwcdxsMBFqPsFFNA7xl0ii/gXuDi6M0xj3mfRJj8pBSc2jCfA==}
 
+<<<<<<< HEAD
+=======
+  '@pixi/ui@2.1.5':
+    resolution: {integrity: sha512-hdraQYreymjYjWiUu/L4uQIl6VaPcREyvjB64mZpTB44SQ0WmcpiZtw4HyGvM48JRMlkQb12CiFyvxFKI8uC1Q==}
+    peerDependencies:
+      pixi.js: ^8.0.2
+
+>>>>>>> af32d48f0c8c8ff69c07edc05ac1a4ee955713d6
   '@pkgr/core@0.1.1':
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
@@ -1509,6 +1526,14 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
+<<<<<<< HEAD
+=======
+  pixi-table-layout@1.0.1:
+    resolution: {integrity: sha512-DgfeLrY3xImKgvFMVMabpSyhmupsdA1LchW6XwOLQnS55tr8vaOZxXO1pgLN1VemDcLkfs4ibWFR28SkScfxZg==}
+    peerDependencies:
+      pixi.js: ^8.0.0
+
+>>>>>>> af32d48f0c8c8ff69c07edc05ac1a4ee955713d6
   pixi.js@8.3.4:
     resolution: {integrity: sha512-b5qdoHMQy79JjTiOOAH/fDiK9dLKGAoxfBwkHIdsK5XKNxsFuII2MBbktvR9pVaAmTDobDkMPDoIBFKYYpDeOg==}
 
@@ -1802,6 +1827,9 @@ packages:
     resolution: {integrity: sha512-xZYCpvy+Q5X05HQLVbup/nUva/EPd8QKX/WLfztz8Yhh7yH+VN9t+P9ACG2U0ThlrqX4uFS0tuE0jaCLvL1Imw==}
     hasBin: true
 
+  tweedle.js@2.1.0:
+    resolution: {integrity: sha512-0ReQgVjepoZkE6t0upWNgCRbplHkQJQYk1LStXugwSR728GLFmGDRuaQJlxeC/iBlxud6+P1RdODjaO25vHAqw==}
+
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
@@ -1829,6 +1857,9 @@ packages:
   typed-array-length@1.0.6:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
+
+  typed-signals@2.5.0:
+    resolution: {integrity: sha512-m9lHc3eBCJerXYdx+G0uWZihyUXdqTzzgOdqiDDsoUo75WjhFJH6vP5/6w/xhyu04zoxHUqgYhf9FEt85dk/Ng==}
 
   typescript@5.5.4:
     resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
@@ -2132,6 +2163,15 @@ snapshots:
 
   '@pixi/colord@2.9.6': {}
 
+<<<<<<< HEAD
+=======
+  '@pixi/ui@2.1.5(pixi.js@8.3.4)':
+    dependencies:
+      pixi.js: 8.3.4
+      tweedle.js: 2.1.0
+      typed-signals: 2.5.0
+
+>>>>>>> af32d48f0c8c8ff69c07edc05ac1a4ee955713d6
   '@pkgr/core@0.1.1': {}
 
   '@rollup/rollup-android-arm-eabi@4.20.0':
@@ -3391,6 +3431,13 @@ snapshots:
 
   picomatch@2.3.1: {}
 
+<<<<<<< HEAD
+=======
+  pixi-table-layout@1.0.1(pixi.js@8.3.4):
+    dependencies:
+      pixi.js: 8.3.4
+
+>>>>>>> af32d48f0c8c8ff69c07edc05ac1a4ee955713d6
   pixi.js@8.3.4:
     dependencies:
       '@pixi/colord': 2.9.6
@@ -3733,6 +3780,8 @@ snapshots:
       turbo-windows-64: 2.0.13
       turbo-windows-arm64: 2.0.13
 
+  tweedle.js@2.1.0: {}
+
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
@@ -3775,6 +3824,8 @@ snapshots:
       has-proto: 1.0.3
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
+
+  typed-signals@2.5.0: {}
 
   typescript@5.5.4: {}
 

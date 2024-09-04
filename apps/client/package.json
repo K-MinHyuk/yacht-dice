@@ -29,7 +29,12 @@
   },
   "packageManager": "pnpm@9.7.1",
   "dependencies": {
+    "@pixi/ui": "^2.1.5",
     "nanostores": "^0.11.2",
+<<<<<<< HEAD
+=======
+    "pixi-table-layout": "^1.0.1",
+>>>>>>> af32d48f0c8c8ff69c07edc05ac1a4ee955713d6
     "pixi.js": "^8.3.4",
     "socket.io-client": "^4.7.5"
   }

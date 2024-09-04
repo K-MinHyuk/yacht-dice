@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 import { Application, Assets, Sprite, Spritesheet, AnimatedSprite } from 'pixi.js'
+=======
+import { FancyButton, List } from '@pixi/ui'
+import { Application } from 'pixi.js'
+>>>>>>> af32d48f0c8c8ff69c07edc05ac1a4ee955713d6
 
 import { $Boards, BonusRecordKey, BonusScore, RecordKeyArray, RecordKeys } from 'components/board'
 import { $Dice, MAX_DICE_STEP } from 'components/dice'
 import { $Game, GameStage } from 'components/game'
 import { $TemporaryScore } from 'components/temporary-score'
 import { $Users } from 'components/user'
+import { ScoreBoard } from 'ui/ScoreBoard'
+import { FancyText } from 'ui/Text'
 import { isAchieveBonus, getScoreOf } from 'utils/caculator'
 import { MAX_ROUND, validate } from 'utils/validater'
+<<<<<<< HEAD
 /*
 hi
 */
@@ -44,6 +52,157 @@ for (let i = 0; i < rollAnimations.length; i++) {
 /*
 hi
 */
+=======
+
+const app = new Application()
+
+await app.init({ resolution: Math.max(window.devicePixelRatio, 2), backgroundColor: 0xffffff, resizeTo: window })
+document.getElementById('app')?.appendChild(app.canvas)
+
+// const sheet = new Spritesheet(await Assets.load('public/d6Red.png'), (await Assets.load('public/d6Red.json')).data)
+// await sheet.parse()
+
+// const rollAnimations = [
+//   new AnimatedSprite(sheet.animations.roll01),
+//   new AnimatedSprite(sheet.animations.roll02),
+//   new AnimatedSprite(sheet.animations.roll03),
+//   new AnimatedSprite(sheet.animations.roll04),
+//   new AnimatedSprite(sheet.animations.roll05),
+// ]
+
+// for (let i = 0; i < rollAnimations.length; i++) {
+//   const roll = rollAnimations[i]
+
+//   roll.animationSpeed = 0.1666 * 3
+//   roll.x = 100 + i * 100
+//   roll.play()
+//   app.stage.addChild(roll)
+// }
+
+const userList = new List<ScoreBoard>({
+  children: [],
+  type: 'horizontal',
+  elementsMargin: 16,
+  padding: 10,
+})
+userList.position.set(0, 10)
+app.stage.addChild(userList)
+
+const userAddButton = new FancyButton({
+  text: new FancyText({ text: '플레이어 추가', style: { fontSize: 12, fontWeight: 'bold' } }),
+})
+userAddButton.onPress.connect(() => $Users.add())
+userAddButton.position.set(app.screen.width / 2, app.screen.height - 100)
+
+app.stage.addChild(userAddButton)
+
+$Users.subscribe((users) => {
+  if (users.length === 0) {
+    $Game.reset()
+  }
+  if (users.length > 0) {
+    $Game.ready()
+  }
+  users.map((user) => $Boards.register(user.info.id))
+})
+
+$Boards.subscribe((boards) => {
+  const users = $Users.get()
+
+  const registeredUserID = userList.children.map((child) => child.user.info.id)
+
+  for (const [id, board] of Object.entries(boards)) {
+    const target = users.find((user) => user.info.id === id)
+    if (!target) {
+      return
+    }
+    if (!registeredUserID.includes(id)) {
+      const scoreBoard = new ScoreBoard(target, board)
+      userList.addChild(scoreBoard)
+    }
+  }
+})
+// const startButton = new Button()
+// startButton.onPress.connect(() => {
+//   const prev = $Game.get()
+//   if (prev.stage !== GameStage.READY) {
+//     return
+//   }
+//   const users = $Users.get()
+//   $Game.startGame(users[0].info.id)
+// })
+
+// const rollDiceButton = new Button()
+// rollDiceButton.onPress.connect(() => {
+//   $Dice.roll()
+// })
+
+// const turnEndButton = new Button()
+// turnEndButton.onPress.connect(() => {
+//   const dice = $Dice.get()
+
+//   if (dice.step === 0) {
+//     return
+//   }
+
+//   const current = $Game.get()
+//   if (current.turn === null) {
+//     return
+//   }
+
+//   const temporary = $TemporaryScore.get()
+//   if (temporary.checkedKey === null || temporary.scores === null) {
+//     return
+//   }
+
+//   const currentBoard = $Boards.getAll(current.turn)
+//   $Boards.setRecord(current.turn, temporary.checkedKey, {
+//     round: current.round,
+//     score: temporary.scores[temporary.checkedKey],
+//   })
+
+//   if (
+//     currentBoard &&
+//     isAchieveBonus({
+//       ...currentBoard,
+//       records: {
+//         ...currentBoard.records,
+//         [temporary.checkedKey]: {
+//           round: current.round,
+//           score: temporary.scores[temporary.checkedKey],
+//         },
+//       },
+//     })
+//   ) {
+//     $Boards.setRecord(current.turn, BonusRecordKey, {
+//       round: current.round,
+//       score: BonusScore,
+//     })
+//   }
+
+//   const users = $Users.get()
+//   const currentUserIndex = users.findIndex((user) => user.info.id === current.turn)
+
+//   if (currentUserIndex + 1 === users.length) {
+//     $Game.nextRound(users[0].info.id)
+//     $TemporaryScore.reset()
+//     $Dice.reset()
+//     return
+//   }
+
+//   $Game.setTurn(users[(currentUserIndex + 1) % users.length].info.id)
+//   $TemporaryScore.reset()
+//   $Dice.reset()
+// })
+
+// const endButton = new Button()
+// endButton.onPress.connect(() => {
+//   $Game.regame()
+//   $Boards.erase()
+//   $Dice.reset()
+// })
+
+>>>>>>> af32d48f0c8c8ff69c07edc05ac1a4ee955713d6
 function main() {
   const root = document.querySelector('div#app')!
 
@@ -382,4 +541,4 @@ function main() {
   })
 }
 
-window.addEventListener('load', main)
+// window.addEventListener('load', main)
